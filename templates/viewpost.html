@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+<div class="viewcontainer"></div>
+<div class="container">
+    <div class="post-container">
+        <div class="post-text-title" id="title-top">{{ post.title }}
+            <div class="post-text-body">By: {{ post.author.first_name }}| {{ post.date.strftime('%d-%m-%Y') }}</div>
+        </div>
+        <hr />
+    </div>
+    <div class="post-text-body">
+        <p>{{post.data|safe}}</p>
+    </div>
+    {% if post.author == current_user %}
+    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#del_modal">Delete</button>
+    <a class="btn btn-outline-secondary" href="post{{ post.id }}/edit">Edit</a> {% endif %}
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="del_modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Post Modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this blog post?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="post{{post.id}}/delete" method="POST">
+                    <input class="btn btn-outline-danger" type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

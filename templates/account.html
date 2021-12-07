@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <div class="container">
+        <div class="post-text-title">{{user.first_name}}</div>
+    </div>
+    <hr />
+    <div class="post-container">
+        <div class="post-text-body" id="email">Email:</div>
+        <div class="post-text-body"> {{user.email}} </div>
+    </div>
+    {% endblock content %}

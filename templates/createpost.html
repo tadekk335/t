@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <div class="post-container" id="single-line">
+        <div class="title" id="title-top">Write your review:</div>
+    </div>
+    <form id="postform" class="form-group" method="POST">
+        <div class="form-group mb-5">
+            <label for="title" class="post-text-body">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" value="{{post.title}}" />
+        </div>
+
+        <div class="form-group">
+            <label for="txtarea" class="post-text-body">Content</label>
+            <textarea class="form-control form-control-lg" , rows="20" , cols="50" , id="txtarea" name="txtarea"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    </form>
+    <script>
+        tinymce.init({
+            selector: '#txtarea',
+            setup: function(editor) {
+                editor.on('init', function(e) {
+                    editor.setContent('{{post.data|safe}}');
+                });
+            }
+        });
+    </script>
+</div>
+
+{% endblock content %}
