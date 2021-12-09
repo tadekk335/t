@@ -5,9 +5,8 @@
         <div class="post-text-title" id="title-top">{{ post.title }}
             <div class="post-text-body">By: {{ post.author.first_name }}| {{ post.date.strftime('%d-%m-%Y') }}</div>
         </div>
-        <hr />
     </div>
-    <div class="post-text-body">
+    <div class="post-text-body view-text">
         <p>{{post.data|safe}}</p>
     </div>
     {% if post.author == current_user %}
